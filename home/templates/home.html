@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature and Humidity Gauges</title>
+    <!-- Include JustGage library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Temperature</h2>
+        <!-- Temperature Gauge -->
+        <div id="temperatureGauge" style="width: 200px; height: 150px;"></div>
+    </div>
+    <div>
+        <h2>Humidity</h2>
+        <!-- Humidity Gauge -->
+        <div id="humidityGauge" style="width: 200px; height: 150px;"></div>
+    </div>
+
+    <script>
+        // Function to update temperature and humidity gauges
+        function updateGauges(temperatureValue, humidityValue) {
+            // Update Temperature Gauge
+            temperatureGauge.refresh(temperatureValue);
+
+            // Update Humidity Gauge
+            humidityGauge.refresh(humidityValue);
+        }
+
+        // Initialize Temperature Gauge
+        var temperatureGauge = new JustGage({
+            id: "temperatureGauge",
+            value: 0,
+            min: -10,
+            max: 40,
+            title: "°C",
+            label: "Temperature",
+            gaugeWidthScale: 0.6,
+            counter: true,
+            relativeGaugeSize: true
+        });
+
+        // Initialize Humidity Gauge
+        var humidityGauge = new JustGage({
+            id: "humidityGauge",
+            value: 0,
+            min: 0,
+            max: 100,
+            title: "%",
+            label: "Humidity",
+            gaugeWidthScale: 0.6,
+            counter: true,
+            relativeGaugeSize: true
+        });
+
+        // Example: Call updateGauges with new values (replace these with your actual values)
+        var newTemperatureValue = {{channel_type}};
+        var newHumidityValue = {{channel_name}};
+        updateGauges(newTemperatureValue, newHumidityValue);
+    </script>
+</body>
+</html>
